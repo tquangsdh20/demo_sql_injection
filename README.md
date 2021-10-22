@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/logo.svg?sanitize=true" />
+  <img src=".github/tittle.svg?sanitize=true" />
 </p>
 
 ## Members:
