@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-import pandas as pd
+#import pandas as pd
 from sqlite3 import Connection, OperationalError
 
 class AccessDenied(Exception): ...
