@@ -47,7 +47,7 @@ setup(
     url=url,
     classifiers = classifiers,
     package_dir={'demo': package_dir[0:len(package_dir)-1]},
-    packages=[name_package],
+    #packages=[name_package],
     install_requires = install_requires,
     include_package_data=True,
     license= 'MIT',
