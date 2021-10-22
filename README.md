@@ -3,10 +3,10 @@
 </p>
 
 ## Members:
-1. Tran Quang
-2. Nguyen Hoang Dinh Quy
-3. Than Hai Nhat Minh
-4. Nguyen Ty Phu
+- Tran Quang
+- Nguyen Hoang Dinh Quy
+- Than Hai Nhat Minh
+- Nguyen Ty Phu
 
 ## Introductions
 
