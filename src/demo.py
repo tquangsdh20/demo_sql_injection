@@ -4,28 +4,31 @@ from PyQt5.QtWidgets import QMessageBox
 from sqlite3 import Connection, OperationalError
 
 class AccessDenied(Exception): ...
+class UnwantedError(Exception): ...
 class BankingApp:
-    def __init__(self,bank:str):
+    def __init__(self):
         self.__conn = Connection('./data/Banking.db')
         self.__cur = self.__conn.cursor()
     #Login accounts
     def login(self,user,password):
         #Make a string to mapping with password and user input
-        LOGIN = """
-        SELECT user
-            ,checking
-            ,savings
-        FROM accounts
-        WHERE "user" = '{user}' AND "password" = '{password}' LIMIT 1;"""
+        LOGIN = f"""
+SELECT user
+    ,checking
+    ,savings
+FROM accounts
+WHERE "user" = '{user}' AND "password" = '{password}' LIMIT 1;"""
+        print(LOGIN)
         try:
-            self.__cur.execute(LOGIN.format(user=user,password=password))
-            token = self.__cur.fetchone()
+            self.__cur.execute(LOGIN)
+            tokens = self.__cur.fetchall()
         except OperationalError:
-            print('OperationalError: Something wrong happens! Try again.')
-            raise AccessDenied('Unwanted Error')
-        if token is None: raise AccessDenied('Username or Password is incorrect!')
-        else: print('Successful to login!')
-        return token
+            #print('OperationalError: Something wrong happens! Try again.')
+            raise UnwantedError('Unwanted Error')
+        else:
+            # Nothing matching will return NONE
+            if len(tokens)<1: raise AccessDenied('Username or Password is incorrect!')
+        return tokens
     
     def close(self):
         self.__conn.commit()
@@ -113,13 +116,22 @@ class Ui_MainWindow(object):
     def press_login(self):
         __user = self.user.text()
         __pwd = self.password.text()
-        app = BankingApp('')
+        app = BankingApp()
         try:
-            token = app.login(__user,__pwd)
-            self.show_success(token)
+            try:
+                tokens = app.login(__user,__pwd)
+            except UnwantedError:
+                app.close()
+                self.show_MsgErr()
+                return
         except AccessDenied:
             self.show_deny()
-            print('Error: Incorrect username or password')
+            app.close()
+        else:
+            self.show_success(tokens[0])
+            for token in tokens:
+                print(f'User: {token[0]}\tChecking: {token[1]}\tSavings: {token[2]}')
+    
     #Check show password
     def check_show(self,state):
         if state == QtCore.Qt.Checked:
