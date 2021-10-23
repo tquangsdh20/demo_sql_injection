@@ -73,4 +73,15 @@ Add comment
 WHERE "user" = 'typhu' --' AND "password" = 'demo' LIMIT 1;
 ```
 
+### Hacking Tools
+
+<p align="center">
+  <img src=".github/sqli.png?sanitize=true" />
+</p>
+
+- [SQLMap](https://github.com/sqlmapproject/sqlmap) : Automatic SQL Injection And Database Takeover Tool
+- [jSQL Injection](https://www.kitploit.com/2017/08/sqlmap-v118-automatic-sql-injection-and.html) : Java Tool For Automatic SQL Database Injection
+- [BBQSQL](https://www.kitploit.com/2016/10/bbqsql-blind-sql-injection-exploitation.html) : A Blind SQL Injection Exploitation Tool
+- [NoSQLMap](https://www.kitploit.com/2016/02/nosqlmap-v06-automated-nosql-database.html) : Automated NoSQL Database Pwnage
+
 ### How to protect your database from SQL Injection
