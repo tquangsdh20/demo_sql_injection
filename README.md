@@ -14,9 +14,7 @@
 
 ### How does it effect?
 
-### How to protect your database from SQL Injection
-
-## Demo
+## Demo Attacks
 
 ### Log in
 
@@ -74,3 +72,5 @@ Add comment
 ```sql
 WHERE "user" = 'typhu' --' AND "password" = 'demo' LIMIT 1;
 ```
+
+### How to protect your database from SQL Injection
